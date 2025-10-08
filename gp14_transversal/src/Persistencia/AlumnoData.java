@@ -78,6 +78,10 @@ public class AlumnoData {
                 alumnos.add(a);
             }
             
+            for (Alumno alumno : alumnos) {
+                System.out.println(alumno);
+            }
+            
             ps.close();
             
             
@@ -88,6 +92,8 @@ public class AlumnoData {
         
         return alumnos;
     }
+    
+    
     
     public Alumno buscarAlumno(int dni){
         Alumno a = null;

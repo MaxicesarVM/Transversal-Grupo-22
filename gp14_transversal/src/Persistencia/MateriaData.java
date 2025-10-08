@@ -75,6 +75,10 @@ public class MateriaData {
                 materias.add(m);
             }
             
+            for (Materia materia : materias) {
+                System.out.println(materia);
+            }
+            
             ps.close();
             
             
@@ -84,19 +88,21 @@ public class MateriaData {
         
         
         return materias;
+        
     }
     
     
     
     public Materia buscarMateria(int id){
         Materia m = null;
-        String sql = "SELECT * FROM materia";
+        String sql = "SELECT * FROM materia WHERE id_materia = ?";
         PreparedStatement ps;
         try{
             ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                m= new Materia();
+            if(rs.next()){
+                m = new Materia();
                 m.setId_materia(rs.getInt("id_materia"));
                 m.setNombre(rs.getString("nombre"));
                 m.setAno(rs.getDate("ano").toLocalDate());

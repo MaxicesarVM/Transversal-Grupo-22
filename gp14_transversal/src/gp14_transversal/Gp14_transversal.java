@@ -2,8 +2,10 @@
 package gp14_transversal;
 
 import Modelo.Alumno;
+import Modelo.Materia;
 import Persistencia.AlumnoData;
 import Persistencia.Conexion;
+import Persistencia.MateriaData;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -20,15 +22,25 @@ public class Gp14_transversal {
         Alumno facundo = new Alumno(44444444, "Calderon", "Facundo", LocalDate.of(1992,Month.NOVEMBER,04), true);
         Alumno alan = new Alumno(77667766, "Jaciuk", "Alan", LocalDate.of(1991,Month.OCTOBER,01), true);
         Alumno lucas = new Alumno(88998899, "Zarate", "Luquitas", LocalDate.of(2001,Month.MAY,02), true);
-        Alumno fernando = new Alumno(44554455, "Suarez", "Fernando", LocalDate.of(1982,Month.FEBRUARY,27), true);
+        Alumno rodrigo = new Alumno(4412412, "Pereyra", "Rodrigo", LocalDate.of(1982,Month.FEBRUARY,27), true);
         Alumno fernando2 = new Alumno(4467455, "Rodriguez", "Fernando", LocalDate.of(1982,Month.FEBRUARY,27), true);
+        //
+        Materia laboratorio = new Materia(1, "Laboratorio 1", LocalDate.of(2025,Month.AUGUST,11), true);
+        Materia based = new Materia(2, "Base de datos 1", LocalDate.of(2025,Month.AUGUST,11), true);
+        Materia web = new Materia(4, "Estructura de datos 5", LocalDate.of(2025,Month.AUGUST,11), true);
+        
+        
         
         Conexion con = new Conexion();
         AlumnoData operacionesAlumnos = new AlumnoData(con);
+        MateriaData operacionesMaterias = new MateriaData(con);
         
         
         
-        operacionesAlumnos.agregarAlumno(fernando2);
+       
+        
+        operacionesMaterias.altaLogica(web);
+        
         
         
         
