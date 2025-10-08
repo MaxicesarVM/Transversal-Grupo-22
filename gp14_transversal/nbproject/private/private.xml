@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Rickert/Documents/GitHub/Transversal-Grupo-22/gp14_transversal/src/Modelo/Alumno.java</file>
             <file>file:/C:/Users/Rickert/Documents/GitHub/Transversal-Grupo-22/gp14_transversal/src/Modelo/Materia.java</file>
-            <file>file:/C:/Users/Rickert/Documents/GitHub/Transversal-Grupo-22/gp14_transversal/src/Modelo/Inscripcion.java</file>
+            <file>file:/C:/Users/Rickert/Documents/GitHub/Transversal-Grupo-22/gp14_transversal/src/Persistencia/MateriaData.java</file>
+            <file>file:/C:/Users/Rickert/Documents/GitHub/Transversal-Grupo-22/gp14_transversal/src/Persistencia/AlumnoData.java</file>
+            <file>file:/C:/Users/Rickert/Documents/GitHub/Transversal-Grupo-22/gp14_transversal/src/gp14_transversal/Gp14_transversal.java</file>
         </group>
     </open-files>
 </project-private>
