@@ -4,6 +4,14 @@
  */
 package Vista;
 
+import Modelo.Alumno;
+import Persistencia.AlumnoData;
+import Persistencia.Conexion;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rickert
@@ -17,6 +25,11 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    Conexion con = new Conexion();
+    AlumnoData operacionesAlumnos = new AlumnoData(con);
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,6 +58,8 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
         btn_bajal = new javax.swing.JButton();
         btn_buscar = new javax.swing.JButton();
         btn_altal = new javax.swing.JButton();
+        lbl_apellido = new javax.swing.JLabel();
+        txt_apellido = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -76,12 +91,32 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
         check_activo.setText("jCheckBox1");
 
         btn_guardar.setText("Guardar");
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarActionPerformed(evt);
+            }
+        });
 
         btn_borrar.setText("Borrar");
+        btn_borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_borrarActionPerformed(evt);
+            }
+        });
 
         btn_actualizar.setText("Actualizar");
+        btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualizarActionPerformed(evt);
+            }
+        });
 
         btn_limpiar.setText("Limpiar");
+        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarActionPerformed(evt);
+            }
+        });
 
         btn_bajal.setText("BajaLogica");
         btn_bajal.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +126,11 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
         });
 
         btn_buscar.setText("Buscar");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
 
         btn_altal.setText("AltaLogica");
         btn_altal.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +138,10 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
                 btn_altalActionPerformed(evt);
             }
         });
+
+        lbl_apellido.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbl_apellido.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_apellido.setText("Apellido");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,19 +153,9 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
                         .addGap(39, 39, 39)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbl_fecha)
-                                            .addComponent(lbl_nombre))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lbl_estado)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(check_activo)))
+                                .addComponent(lbl_nombre)
+                                .addGap(26, 26, 26)
+                                .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,9 +167,23 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
                                 .addComponent(btn_buscar)
                                 .addGap(93, 93, 93))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lbl_dni)
-                                .addGap(63, 63, 63)
-                                .addComponent(txt_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lbl_dni)
+                                        .addGap(63, 63, 63)
+                                        .addComponent(txt_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lbl_estado)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(check_activo))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lbl_fecha)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lbl_apellido)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,24 +225,29 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_nombre)
                     .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbl_fecha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_apellido)
+                    .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbl_fecha)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_estado)
+                            .addComponent(check_activo))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_borrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_bajal, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_altal, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_estado)
-                    .addComponent(check_activo))
-                .addGap(69, 69, 69)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_borrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_bajal, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_altal, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
@@ -212,19 +265,127 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_bajalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bajalActionPerformed
-        // TODO add your handling code here:
+        
+        int seleccionId = Integer.parseInt(txt_id.getText());
+        int seleccionDni = Integer.parseInt(txt_dni.getText());
+        String seleccionNombre = txt_nombre.getText();
+        String seleccionApellido = txt_apellido.getText();
+        LocalDate seleccionFecha = LocalDate.parse(txt_fecha.getDateFormatString());
+        boolean seleccionEstado = check_activo.isSelected();
+        
+        Alumno alumnoBaja = new Alumno(seleccionId, seleccionDni, seleccionNombre, seleccionApellido, seleccionFecha, seleccionEstado);
+        operacionesAlumnos.bajaLogica(alumnoBaja);
+        JOptionPane.showMessageDialog(this, "Se dio de baja el alumno correctamente");
+        
+        
+        
     }//GEN-LAST:event_btn_bajalActionPerformed
 
     private void btn_altalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_altalActionPerformed
-        // TODO add your handling code here:
+        
+        
+        int seleccionId = Integer.parseInt(txt_id.getText());
+        int seleccionDni = Integer.parseInt(txt_dni.getText());
+        String seleccionNombre = txt_nombre.getText();
+        String seleccionApellido = txt_apellido.getText();
+        LocalDate seleccionFecha = LocalDate.parse(txt_fecha.getDateFormatString());
+        boolean seleccionEstado = check_activo.isSelected();
+        
+        Alumno alumnoAlta = new Alumno(seleccionId, seleccionDni, seleccionNombre, seleccionApellido, seleccionFecha, seleccionEstado);
+        operacionesAlumnos.altaLogica(alumnoAlta);
+        JOptionPane.showMessageDialog(this, "Se dio de alta el alumno correctamente");
+        
+        
+        
     }//GEN-LAST:event_btn_altalActionPerformed
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        
+        int seleccion = Integer.parseInt(txt_id.getText());
+        txt_dni.setText(String.valueOf(operacionesAlumnos.buscarAlumno(seleccion).getDni()));
+        txt_nombre.setText(operacionesAlumnos.buscarAlumno(seleccion).getNombre());
+        txt_apellido.setText(operacionesAlumnos.buscarAlumno(seleccion).getApellido());
+        
+        LocalDate fecNac = operacionesAlumnos.buscarAlumno(seleccion).getFecha_nacimiento();
+        Date fechaParseada = Date.from(fecNac.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        txt_fecha.setDate(fechaParseada);
+        check_activo.setEnabled(operacionesAlumnos.buscarAlumno(seleccion).isEstado());
+        
+        
+        
+        
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        
+        
+        
+        int seleccionId = Integer.parseInt(txt_id.getText());
+        int seleccionDni = Integer.parseInt(txt_dni.getText());
+        String seleccionNombre = txt_nombre.getText();
+        String seleccionApellido = txt_apellido.getText();
+        LocalDate seleccionFecha = LocalDate.parse(txt_fecha.getDateFormatString());
+        boolean seleccionEstado = check_activo.isSelected();
+        
+        Alumno alumnoCreado = new Alumno(seleccionId, seleccionDni, seleccionNombre, seleccionApellido, seleccionFecha, seleccionEstado);
+        operacionesAlumnos.agregarAlumno(alumnoCreado);
+        JOptionPane.showMessageDialog(this, "Se agrego el alumno: " + seleccionNombre + " correctamente");
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btn_guardarActionPerformed
+
+    private void btn_borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_borrarActionPerformed
+        
+        int seleccionDni = Integer.parseInt(txt_dni.getText());
+        
+        operacionesAlumnos.eliminarAlumno(seleccionDni);
+        JOptionPane.showMessageDialog(this, "Se elimino el alumno correctamente");
+        
+        
+        
+    }//GEN-LAST:event_btn_borrarActionPerformed
+
+    private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
+        
+        int seleccionId = Integer.parseInt(txt_id.getText());
+        int seleccionDni = Integer.parseInt(txt_dni.getText());
+        String seleccionNombre = txt_nombre.getText();
+        String seleccionApellido = txt_apellido.getText();
+        LocalDate seleccionFecha = LocalDate.parse(txt_fecha.getDateFormatString());
+        boolean seleccionEstado = check_activo.isSelected();
+        
+        Alumno alumnoActualizado = new Alumno(seleccionId, seleccionDni, seleccionNombre, seleccionApellido, seleccionFecha, seleccionEstado);
+        operacionesAlumnos.agregarAlumno(alumnoActualizado);
+        JOptionPane.showMessageDialog(this, "Se actualizo el alumno correctamente");
+        
+        
+        
+        
+    }//GEN-LAST:event_btn_actualizarActionPerformed
+
+    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
+        
+        
+        txt_id.setText("");
+        txt_dni.setText("");
+        txt_nombre.setText("");
+        txt_apellido.setText("");
+        txt_fecha.setDate(null);
+        check_activo.setEnabled(false);
+        
+        
+        
+    }//GEN-LAST:event_btn_limpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -237,12 +398,14 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_limpiar;
     private javax.swing.JCheckBox check_activo;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbl_apellido;
     private javax.swing.JLabel lbl_dni;
     private javax.swing.JLabel lbl_estado;
     private javax.swing.JLabel lbl_fecha;
     private javax.swing.JLabel lbl_id;
     private javax.swing.JLabel lbl_nombre;
     private javax.swing.JLabel lbl_titulo;
+    private javax.swing.JTextField txt_apellido;
     private javax.swing.JTextField txt_dni;
     private com.toedter.calendar.JDateChooser txt_fecha;
     private javax.swing.JTextField txt_id;

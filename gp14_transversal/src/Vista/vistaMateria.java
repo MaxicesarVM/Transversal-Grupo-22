@@ -4,6 +4,13 @@
  */
 package Vista;
 
+import Modelo.Materia;
+import Persistencia.Conexion;
+import Persistencia.MateriaData;
+import java.time.LocalDate;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rickert
@@ -17,6 +24,13 @@ public class vistaMateria extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    Conexion con = new Conexion();
+    MateriaData operacionesMaterias = new MateriaData(con);
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,6 +53,10 @@ public class vistaMateria extends javax.swing.JInternalFrame {
         btn_bajam = new javax.swing.JButton();
         btn_buscarM = new javax.swing.JButton();
         btn_altam = new javax.swing.JButton();
+        lbl_anoM = new javax.swing.JLabel();
+        txt_anoM = new javax.swing.JTextField();
+        lbl_estadoM = new javax.swing.JLabel();
+        chk_estadoM = new javax.swing.JCheckBox();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -56,12 +74,32 @@ public class vistaMateria extends javax.swing.JInternalFrame {
         lbl_nombreM.setText("Nombre");
 
         btn_guardarM.setText("Guardar");
+        btn_guardarM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarMActionPerformed(evt);
+            }
+        });
 
         btn_borrarM.setText("Borrar");
+        btn_borrarM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_borrarMActionPerformed(evt);
+            }
+        });
 
         btn_actuM.setText("Actualizar");
+        btn_actuM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actuMActionPerformed(evt);
+            }
+        });
 
         btn_limpiarM.setText("Limpiar");
+        btn_limpiarM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarMActionPerformed(evt);
+            }
+        });
 
         btn_bajam.setText("BajaLogica");
         btn_bajam.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +109,11 @@ public class vistaMateria extends javax.swing.JInternalFrame {
         });
 
         btn_buscarM.setText("Buscar");
+        btn_buscarM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarMActionPerformed(evt);
+            }
+        });
 
         btn_altam.setText("AltaLogica");
         btn_altam.addActionListener(new java.awt.event.ActionListener() {
@@ -79,80 +122,93 @@ public class vistaMateria extends javax.swing.JInternalFrame {
             }
         });
 
+        lbl_anoM.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbl_anoM.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_anoM.setText("Ano");
+
+        lbl_estadoM.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbl_estadoM.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_estadoM.setText("Activo");
+
+        chk_estadoM.setText("jCheckBox1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbl_id_materia)
-                        .addGap(68, 68, 68)
-                        .addComponent(txt_idM))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbl_nombreM)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_nombreM, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(btn_buscarM, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(223, 223, 223))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(274, 274, 274)
                         .addComponent(lbl_tituloM))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(161, 161, 161)
-                                .addComponent(btn_altam, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(58, 58, 58)
-                                        .addComponent(btn_guardarM, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(215, 215, 215))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(btn_borrarM, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                                            .addComponent(btn_bajam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(63, 63, 63)))
-                                .addComponent(btn_actuM, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(57, 57, 57)
+                        .addComponent(btn_guardarM, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_borrarM, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_bajam, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(65, 65, 65)
-                        .addComponent(btn_limpiarM, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btn_actuM, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(64, 64, 64)
+                                .addComponent(btn_limpiarM, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_altam, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_buscarM, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_estadoM)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lbl_id_materia)
+                                    .addGap(68, 68, 68)
+                                    .addComponent(txt_idM))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lbl_nombreM)
+                                        .addComponent(lbl_anoM))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txt_anoM, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txt_nombreM, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(chk_estadoM)))))))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(lbl_tituloM)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_id_materia)
-                            .addComponent(txt_idM, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(btn_buscarM, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_id_materia)
+                    .addComponent(txt_idM, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_nombreM, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_nombreM))
-                .addGap(77, 77, 77)
+                    .addComponent(lbl_nombreM)
+                    .addComponent(btn_buscarM, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_anoM)
+                    .addComponent(txt_anoM, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_estadoM)
+                    .addComponent(chk_estadoM))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_guardarM, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_borrarM, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_actuM, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_limpiarM, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
+                .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_bajam, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_altam, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -167,21 +223,109 @@ public class vistaMateria extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_altamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_altamActionPerformed
-        // TODO add your handling code here:
+        
+        int seleccionId = Integer.parseInt(txt_idM.getText());
+        String seleccionNombre = txt_nombreM.getText();
+        LocalDate seleccionFecha = LocalDate.parse(txt_anoM.getText());
+        boolean seleccionEstado = chk_estadoM.isSelected();
+        
+        Materia materiaAlta = new Materia(seleccionId, seleccionNombre, seleccionFecha, seleccionEstado);
+        operacionesMaterias.altaLogica(materiaAlta);
+        JOptionPane.showMessageDialog(this, "Se dio de alta la materia: " + seleccionNombre + " correctamente");
+        
+        
+        
     }//GEN-LAST:event_btn_altamActionPerformed
 
     private void btn_bajamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bajamActionPerformed
-        // TODO add your handling code here:
+        
+        int seleccionId = Integer.parseInt(txt_idM.getText());
+        String seleccionNombre = txt_nombreM.getText();
+        LocalDate seleccionFecha = LocalDate.parse(txt_anoM.getText());
+        boolean seleccionEstado = chk_estadoM.isSelected();
+        
+        Materia materiaBaja = new Materia(seleccionId, seleccionNombre, seleccionFecha, seleccionEstado);
+        operacionesMaterias.bajaLogica(materiaBaja);
+        JOptionPane.showMessageDialog(this, "Se dio de baja la materia: " + seleccionNombre + " correctamente");
+        
     }//GEN-LAST:event_btn_bajamActionPerformed
+
+    private void btn_buscarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarMActionPerformed
+        
+        
+        int seleccion = Integer.parseInt(txt_idM.getText());
+        
+        txt_nombreM.setText(operacionesMaterias.buscarMateria(seleccion).getNombre());
+        txt_anoM.setText(operacionesMaterias.buscarMateria(seleccion).getAno().toString());
+        chk_estadoM.setEnabled(operacionesMaterias.buscarMateria(seleccion).isEstado());
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btn_buscarMActionPerformed
+
+    private void btn_guardarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarMActionPerformed
+       
+        int seleccionId = Integer.parseInt(txt_idM.getText());
+        String seleccionNombre = txt_nombreM.getText();
+        LocalDate seleccionFecha = LocalDate.parse(txt_anoM.getText());
+        boolean seleccionEstado = chk_estadoM.isSelected();
+        
+        Materia materiaCreada = new Materia(seleccionId, seleccionNombre, seleccionFecha, seleccionEstado);
+        operacionesMaterias.agregarMateria(materiaCreada);
+        JOptionPane.showMessageDialog(this, "Se agrego la materia: " + seleccionNombre + " correctamente");
+        
+        
+               
+    }//GEN-LAST:event_btn_guardarMActionPerformed
+
+    private void btn_borrarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_borrarMActionPerformed
+        
+        int seleccionId = Integer.parseInt(txt_idM.getText());
+        
+        operacionesMaterias.eliminarMateria(seleccionId);
+        JOptionPane.showMessageDialog(this, "Se elimino la materia correctamente");
+        
+        
+    }//GEN-LAST:event_btn_borrarMActionPerformed
+
+    private void btn_actuMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actuMActionPerformed
+        
+        int seleccionId = Integer.parseInt(txt_idM.getText());
+        String seleccionNombre = txt_nombreM.getText();
+        LocalDate seleccionFecha = LocalDate.parse(txt_anoM.getText());
+        boolean seleccionEstado = chk_estadoM.isSelected();
+        
+        Materia materiaActualizada = new Materia(seleccionId, seleccionNombre, seleccionFecha, seleccionEstado);
+        operacionesMaterias.actualizarMateria(materiaActualizada);
+        JOptionPane.showMessageDialog(this, "Se ha actualizado la materia correctamente");
+        
+        
+        
+    }//GEN-LAST:event_btn_actuMActionPerformed
+
+    private void btn_limpiarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarMActionPerformed
+        
+        txt_idM.setText("");
+        txt_nombreM.setText("");
+        txt_anoM.setText("");
+        chk_estadoM.setEnabled(false);
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btn_limpiarMActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -192,10 +336,14 @@ public class vistaMateria extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_buscarM;
     private javax.swing.JButton btn_guardarM;
     private javax.swing.JButton btn_limpiarM;
+    private javax.swing.JCheckBox chk_estadoM;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbl_anoM;
+    private javax.swing.JLabel lbl_estadoM;
     private javax.swing.JLabel lbl_id_materia;
     private javax.swing.JLabel lbl_nombreM;
     private javax.swing.JLabel lbl_tituloM;
+    private javax.swing.JTextField txt_anoM;
     private javax.swing.JTextField txt_idM;
     private javax.swing.JTextField txt_nombreM;
     // End of variables declaration//GEN-END:variables
