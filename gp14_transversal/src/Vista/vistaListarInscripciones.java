@@ -4,6 +4,12 @@
  */
 package Vista;
 
+import Persistencia.AlumnoData;
+import Persistencia.Conexion;
+import Persistencia.InscripcionData;
+import Persistencia.MateriaData;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Rickert
@@ -15,8 +21,29 @@ public class vistaListarInscripciones extends javax.swing.JInternalFrame {
      */
     public vistaListarInscripciones() {
         initComponents();
+        cargarlistadoInscripcion();
     }
 
+    private DefaultTableModel tablalistarInscripciones = new DefaultTableModel(){
+        
+        public boolean iscellEditable(int f, int c){
+         
+            return false;
+            
+        }
+        
+        
+    };
+    
+    
+    
+    Conexion con = new Conexion();
+    MateriaData operacionesAlumnos = new MateriaData(con);
+    InscripcionData operacionesInscripciones = new InscripcionData(con);
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,10 +55,10 @@ public class vistaListarInscripciones extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lbl_tituloListado = new javax.swing.JLabel();
-        lbl_alumnoListado = new javax.swing.JLabel();
-        jcb_alumnoListado = new javax.swing.JComboBox<>();
+        lbl_materiaListado = new javax.swing.JLabel();
+        jcb_materiaListado = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_alumnosListados = new javax.swing.JTable();
+        tbl_materiaListados = new javax.swing.JTable();
         btn_salirListado = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -39,12 +66,10 @@ public class vistaListarInscripciones extends javax.swing.JInternalFrame {
         lbl_tituloListado.setForeground(new java.awt.Color(0, 0, 0));
         lbl_tituloListado.setText("LISTADO DE INSCRIPCIONES ");
 
-        lbl_alumnoListado.setForeground(new java.awt.Color(0, 0, 0));
-        lbl_alumnoListado.setText("ALUMNO:");
+        lbl_materiaListado.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_materiaListado.setText("MATERIA:");
 
-        jcb_alumnoListado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        tbl_alumnosListados.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_materiaListados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -55,7 +80,7 @@ public class vistaListarInscripciones extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tbl_alumnosListados);
+        jScrollPane1.setViewportView(tbl_materiaListados);
 
         btn_salirListado.setText("Salir");
 
@@ -67,11 +92,11 @@ public class vistaListarInscripciones extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(98, 98, 98)
-                        .addComponent(lbl_alumnoListado)
+                        .addComponent(lbl_materiaListado)
                         .addGap(41, 41, 41)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jcb_alumnoListado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_tituloListado)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbl_tituloListado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcb_materiaListado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -88,8 +113,8 @@ public class vistaListarInscripciones extends javax.swing.JInternalFrame {
                 .addComponent(lbl_tituloListado)
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_alumnoListado)
-                    .addComponent(jcb_alumnoListado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_materiaListado)
+                    .addComponent(jcb_materiaListado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -118,13 +143,30 @@ public class vistaListarInscripciones extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
+    
+    public void cargarlistadoInscripcion(){
+        
+        tablalistarInscripciones.addColumn("ID");
+        tablalistarInscripciones.addColumn("Dni");
+        tablalistarInscripciones.addColumn("Nombre");
+        tablalistarInscripciones.addColumn("Apellido");
+        
+        
+        tbl_materiaListados.setModel(tablalistarInscripciones);
+        
+        
+        
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_salirListado;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> jcb_alumnoListado;
-    private javax.swing.JLabel lbl_alumnoListado;
+    private javax.swing.JComboBox<String> jcb_materiaListado;
+    private javax.swing.JLabel lbl_materiaListado;
     private javax.swing.JLabel lbl_tituloListado;
-    private javax.swing.JTable tbl_alumnosListados;
+    private javax.swing.JTable tbl_materiaListados;
     // End of variables declaration//GEN-END:variables
 }

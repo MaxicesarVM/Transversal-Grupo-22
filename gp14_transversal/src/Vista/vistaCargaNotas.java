@@ -4,6 +4,11 @@
  */
 package Vista;
 
+import Persistencia.AlumnoData;
+import Persistencia.Conexion;
+import Persistencia.InscripcionData;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Rickert
@@ -15,8 +20,44 @@ public class vistaCargaNotas extends javax.swing.JInternalFrame {
      */
     public vistaCargaNotas() {
         initComponents();
+        cargarNotasInscripcion();
     }
 
+    
+    private DefaultTableModel tablacargarNotas= new DefaultTableModel(){
+        
+        public boolean iscellEditable(int f, int c){
+         
+            return false;
+            
+        }
+        
+        
+    };
+    
+    
+    
+    Conexion con = new Conexion();
+    AlumnoData operacionesAlumnos = new AlumnoData(con);
+    InscripcionData operacionesInscripciones = new InscripcionData(con);
+    
+    
+    public void cargarNotasInscripcion(){
+        
+        tablacargarNotas.addColumn("ID");
+        tablacargarNotas.addColumn("Materia");
+        tablacargarNotas.addColumn("Nota");
+        
+        
+        tbl_alumnosNotas.setModel(tablacargarNotas);
+        
+        
+        
+    }
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,8 +85,6 @@ public class vistaCargaNotas extends javax.swing.JInternalFrame {
         lbl_alumnoNotas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_alumnoNotas.setForeground(new java.awt.Color(0, 0, 0));
         lbl_alumnoNotas.setText("Alumno:");
-
-        jcb_alumnosNotas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         tbl_alumnosNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
