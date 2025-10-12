@@ -1,6 +1,7 @@
 
 package Persistencia;
 
+import Modelo.Alumno;
 import Modelo.Inscripcion;
 import Modelo.Materia;
 import java.sql.Connection;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class InscripcionData {
@@ -59,16 +61,29 @@ public class InscripcionData {
     }
     
     
-    public void anularInscripcion(Inscripcion i){
+    
+    
+    
+    
+    public void anularInscripcion(int idAlumno, int idMateria){
         
-        String sql = "DELETE FROM inscripcion WHERE id_inscripcion=?";
+        String sql = "DELETE FROM inscripcion WHERE id_alumno = ? and id_materia = ?";
         
         try{
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, i.getId());
-            ps.executeUpdate();
+            ps.setInt(1, idAlumno);
+            ps.setInt(2, idMateria);
+            
+            int filas = ps.executeUpdate();
+            
+            if(filas > 0){
+                
+                JOptionPane.showMessageDialog(null, "Inscripcion anulada exitosamente");
+                
+            }
+            
             ps.close();
-            System.out.println("Inscripcion anulada exitosamente");
+            
             
             
             
@@ -80,13 +95,73 @@ public class InscripcionData {
         
     }
     
+        public int buscarNotaInscripcion(int idAlumno, int idMateria){
+            int nota = -1;
+        
+            String sql = "SELECT nota FROM inscripcion WHERE id_alumno = ? ANd id_materia = ?";
+        
+            try{
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, idAlumno);
+                ps.setInt(2, idMateria);
+                ResultSet registros = ps.executeQuery();
+                
+                if(registros.next()){
+                    nota = registros.getInt("nota");
+                }
+                
+                ps.close();
+                
+                
+            } catch (SQLException ex) {
+                System.out.println("Error en la busqueda una nota por el id_alumno o id_materia" + ex.getMessage());
+        }
+            
+        
+            return nota;
+    }
+    
+    
+    
+    public void actualizarInscripcion(Inscripcion i){
+        
+        String sql = "UPDATE inscripcion SET nota = ? WHERE id_alumno = ? AND id_materia = ?";
+        
+        try{
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            
+           
+            ps.setInt(1, i.getNota());
+            ps.setInt(2, i.getAlumno().getId_alumno());
+            ps.setInt(3, i.getMateria().getId_materia());
+            int registros = ps.executeUpdate();
+            System.out.println(registros);
+            ResultSet rs = ps.getGeneratedKeys();
+            
+            
+                  
+            
+        
+        } catch (SQLException ex) {
+            System.out.println("Error de conexion o al actualizar inscripcion: " + ex);
+        }        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
     
     public List<Materia> obtenerMateriasCursadas(int id){
         List<Materia> materias = new ArrayList<>();
         
         try{
             String sql = "SELECT materia.id_materia, nombre FROM inscripcion, materia WHERE inscripcion.id_materia = materia.id_materia" + 
-                    "AND inscripcion.id_alumno = ?";
+                    " AND inscripcion.id_alumno = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();

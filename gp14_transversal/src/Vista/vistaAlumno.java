@@ -61,6 +61,8 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
         lbl_apellido = new javax.swing.JLabel();
         txt_apellido = new javax.swing.JTextField();
 
+        setClosable(true);
+
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 

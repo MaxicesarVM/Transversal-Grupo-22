@@ -61,6 +61,8 @@ public class vistaListarInscripciones extends javax.swing.JInternalFrame {
         tbl_materiaListados = new javax.swing.JTable();
         btn_salirListado = new javax.swing.JButton();
 
+        setClosable(true);
+
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         lbl_tituloListado.setForeground(new java.awt.Color(0, 0, 0));

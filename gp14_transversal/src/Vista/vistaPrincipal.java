@@ -30,9 +30,14 @@ public class vistaPrincipal extends javax.swing.JFrame {
         menu_principal = new javax.swing.JMenuBar();
         menu_archivo = new javax.swing.JMenu();
         menu_materias = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
         menu_alumnos = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         menu_inscripciones = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         menu_carga = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         menu_consultas = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,22 +50,71 @@ public class vistaPrincipal extends javax.swing.JFrame {
         );
         dktp_escritorioLayout.setVerticalGroup(
             dktp_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 557, Short.MAX_VALUE)
+            .addGap(0, 558, Short.MAX_VALUE)
         );
 
         menu_archivo.setText("Archivo");
         menu_principal.add(menu_archivo);
 
         menu_materias.setText("Materias");
+
+        jMenu1.setText("Menu Materias");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+        menu_materias.add(jMenu1);
+
         menu_principal.add(menu_materias);
 
         menu_alumnos.setText("Alumnos");
+
+        jMenu2.setText("Menu Alumnos");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        menu_alumnos.add(jMenu2);
+
         menu_principal.add(menu_alumnos);
 
         menu_inscripciones.setText("Inscripciones");
+
+        jMenuItem1.setText("Inscripciones");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menu_inscripciones.add(jMenuItem1);
+
+        jMenuItem3.setText("Listar Inscripciones");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        menu_inscripciones.add(jMenuItem3);
+
         menu_principal.add(menu_inscripciones);
 
         menu_carga.setText("Carga de Notas");
+
+        jMenuItem2.setText("Menu Carga Notas");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        menu_carga.add(jMenuItem2);
+
         menu_principal.add(menu_carga);
 
         menu_consultas.setText("Consultas");
@@ -82,6 +136,63 @@ public class vistaPrincipal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+       
+        dktp_escritorio.removeAll();
+        dktp_escritorio.repaint();
+        vistaMateria vistaMaterias = new vistaMateria();
+        vistaMaterias.setVisible(true);
+        dktp_escritorio.add(vistaMaterias);
+        dktp_escritorio.moveToFront(vistaMaterias);
+        
+        
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        dktp_escritorio.removeAll();
+        dktp_escritorio.repaint();
+        vistaMateria vistaMaterias = new vistaMateria();
+        vistaMaterias.setVisible(true);
+        dktp_escritorio.add(vistaMaterias);
+        dktp_escritorio.moveToFront(vistaMaterias);
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        dktp_escritorio.removeAll();
+        dktp_escritorio.repaint();
+        vistaAlumno vistaAlumnos = new vistaAlumno();
+        vistaAlumnos.setVisible(true);
+        dktp_escritorio.add(vistaAlumnos);
+        dktp_escritorio.moveToFront(vistaAlumnos);
+    }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        dktp_escritorio.removeAll();
+        dktp_escritorio.repaint();
+        vistaInscripcion vistaInscripciones = new vistaInscripcion();
+        vistaInscripciones.setVisible(true);
+        dktp_escritorio.add(vistaInscripciones);
+        dktp_escritorio.moveToFront(vistaInscripciones);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        dktp_escritorio.removeAll();
+        dktp_escritorio.repaint();
+        vistaListarInscripciones vistaListado = new vistaListarInscripciones();
+        vistaListado.setVisible(true);
+        dktp_escritorio.add(vistaListado);
+        dktp_escritorio.moveToFront(vistaListado);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        dktp_escritorio.removeAll();
+        dktp_escritorio.repaint();
+        vistaCargaNotas vistaNotas = new vistaCargaNotas();
+        vistaNotas.setVisible(true);
+        dktp_escritorio.add(vistaNotas);
+        dktp_escritorio.moveToFront(vistaNotas);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,6 +231,11 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dktp_escritorio;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu menu_alumnos;
     private javax.swing.JMenu menu_archivo;
     private javax.swing.JMenu menu_carga;

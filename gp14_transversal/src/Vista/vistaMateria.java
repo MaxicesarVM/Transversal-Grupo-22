@@ -58,6 +58,8 @@ public class vistaMateria extends javax.swing.JInternalFrame {
         lbl_estadoM = new javax.swing.JLabel();
         chk_estadoM = new javax.swing.JCheckBox();
 
+        setClosable(true);
+
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 

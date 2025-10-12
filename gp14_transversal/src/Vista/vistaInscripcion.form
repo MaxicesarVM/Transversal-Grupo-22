@@ -148,11 +148,8 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcb_alumnosInscripcionActionPerformed"/>
-          </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Alumno&gt;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_listadoMaterias">
@@ -173,6 +170,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Inscripto"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrb_inscriptoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jrb_noinscripto">
           <Properties>
@@ -181,6 +181,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="No Inscripto"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrb_noinscriptoActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -206,12 +209,20 @@
         <Component class="javax.swing.JButton" name="btn_inscribir">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inscribir"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_inscribirActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_anularInscripcion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Anular Inscripcion"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_anularInscripcionActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_salirInscripcion">
           <Properties>

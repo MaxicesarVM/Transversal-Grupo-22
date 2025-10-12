@@ -5,9 +5,12 @@
 package Vista;
 
 import Modelo.Alumno;
+import Modelo.Inscripcion;
+import Modelo.Materia;
 import Persistencia.AlumnoData;
 import Persistencia.Conexion;
 import Persistencia.InscripcionData;
+import Persistencia.MateriaData;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
@@ -21,29 +24,41 @@ public class vistaInscripcion extends javax.swing.JInternalFrame {
     /**
      * Creates new form vistaInscripcion
      */
-    public vistaInscripcion() {
-        initComponents();
-        cargarAlumnos();
-        cargarCategoriasInscripcion();
-    }
+    
+    private ArrayList<Materia> listaM;
+    private ArrayList<Alumno> listaA;
+    private InscripcionData inscData;
+    private MateriaData mData;
+    private AlumnoData aData;
 
-    
-    private DefaultTableModel tablaInscripciones = new DefaultTableModel(){
-        
-        public boolean iscellEditable(int f, int c){
-         
-            return false;
-            
-        }
-        
-        
-    };
-    
-    
+    private DefaultTableModel modeloTabla;
     
     Conexion con = new Conexion();
-    AlumnoData operacionesAlumnos = new AlumnoData(con);
-    InscripcionData operacionesInscripciones = new InscripcionData(con);
+    
+    
+    public vistaInscripcion() {
+        initComponents();
+        
+        aData = new AlumnoData(con);
+        listaA = (ArrayList<Alumno>)aData.listarAlumnos();
+        modeloTabla = new DefaultTableModel();
+        inscData = new InscripcionData(con);
+        mData = new MateriaData(con);
+        cargarAlumnos();
+        cargarColumnasTabla();
+        
+       
+              
+        
+    }
+    
+    
+    
+   
+    
+    
+    
+    
     
     
     
@@ -81,21 +96,25 @@ public class vistaInscripcion extends javax.swing.JInternalFrame {
         lbl_alumnoInscripcion.setForeground(new java.awt.Color(0, 0, 0));
         lbl_alumnoInscripcion.setText("Alumno:");
 
-        jcb_alumnosInscripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcb_alumnosInscripcionActionPerformed(evt);
-            }
-        });
-
         lbl_listadoMaterias.setFont(new java.awt.Font("JetBrains Mono NL Medium", 0, 14)); // NOI18N
         lbl_listadoMaterias.setForeground(new java.awt.Color(0, 0, 0));
         lbl_listadoMaterias.setText("Listado De Materias");
 
         jrb_inscripto.setForeground(new java.awt.Color(0, 0, 0));
         jrb_inscripto.setText("Inscripto");
+        jrb_inscripto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_inscriptoActionPerformed(evt);
+            }
+        });
 
         jrb_noinscripto.setForeground(new java.awt.Color(0, 0, 0));
         jrb_noinscripto.setText("No Inscripto");
+        jrb_noinscripto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_noinscriptoActionPerformed(evt);
+            }
+        });
 
         tbl_tablaInscripciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,8 +130,20 @@ public class vistaInscripcion extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tbl_tablaInscripciones);
 
         btn_inscribir.setText("Inscribir");
+        btn_inscribir.setEnabled(false);
+        btn_inscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inscribirActionPerformed(evt);
+            }
+        });
 
         btn_anularInscripcion.setText("Anular Inscripcion");
+        btn_anularInscripcion.setEnabled(false);
+        btn_anularInscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_anularInscripcionActionPerformed(evt);
+            }
+        });
 
         btn_salirInscripcion.setText("Salir");
 
@@ -197,47 +228,37 @@ public class vistaInscripcion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jcb_alumnosInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcb_alumnosInscripcionActionPerformed
+    private void jrb_inscriptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_inscriptoActionPerformed
         
-        tablaInscripciones.setRowCount(0);
-        
-        
-        
-        
-        
+        jrb_noinscripto.setSelected(false);
+        materiasInscriptas();
+        btn_anularInscripcion.setEnabled(true);
+        btn_inscribir.setEnabled(false);
         
         
-        
-        
-        
-    }//GEN-LAST:event_jcb_alumnosInscripcionActionPerformed
+    }//GEN-LAST:event_jrb_inscriptoActionPerformed
 
-    
-    
-    public void cargarCategoriasInscripcion(){
+    private void jrb_noinscriptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_noinscriptoActionPerformed
+        jrb_inscripto.setSelected(false);
+        materiasNoInscriptas();
+        btn_inscribir.setEnabled(true);
+        btn_anularInscripcion.setEnabled(false);
         
-        tablaInscripciones.addColumn("ID");
-        tablaInscripciones.addColumn("Nombre");
+    }//GEN-LAST:event_jrb_noinscriptoActionPerformed
+
+    private void btn_inscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inscribirActionPerformed
         
-        
-        tbl_tablaInscripciones.setModel(tablaInscripciones);
-        
-        
-        
-    }
-    
-    
-    
-    
-    public void cargarAlumnos(){
-        
-        
-        
-        jcb_alumnosInscripcion.removeAllItems();
-        
-        for(Alumno alumno: operacionesAlumnos.listarAlumnos()){
+        int filaSeleccionada = tbl_tablaInscripciones.getSelectedRow();
+        if(filaSeleccionada != -1){
             
-            jcb_alumnosInscripcion.addItem(alumno.getNombre() + " " + alumno.getApellido());
+            Alumno a =(Alumno) jcb_alumnosInscripcion.getSelectedItem();
+            
+            int idMateria =(Integer) modeloTabla.getValueAt(filaSeleccionada, 0);
+            Materia m = mData.buscarMateria(idMateria);
+            
+            Inscripcion i = new Inscripcion(a, m, 0);
+            inscData.inscribir(i);
+            borrarFilaTabla();
             
             
             
@@ -248,9 +269,100 @@ public class vistaInscripcion extends javax.swing.JInternalFrame {
         
         
         
+    }//GEN-LAST:event_btn_inscribirActionPerformed
+
+    private void btn_anularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_anularInscripcionActionPerformed
+        
+        int filaSeleccionada = tbl_tablaInscripciones.getSelectedRow();
+        if(filaSeleccionada != -1){
+            
+            Alumno a =(Alumno) jcb_alumnosInscripcion.getSelectedItem();
+            
+            int idMateria =(Integer) modeloTabla.getValueAt(filaSeleccionada, 0);
+            
+            
+            inscData.anularInscripcion(a.getId_alumno(), idMateria);
+            borrarFilaTabla();
+            
+            
+            
+        }
+        
+        
+        
+    }//GEN-LAST:event_btn_anularInscripcionActionPerformed
+
+    
+    
+    
+    
+    private void cargarAlumnos(){
+        
+        for(Alumno alumno: listaA){
+            
+            jcb_alumnosInscripcion.addItem(alumno);
+        }
+        
+    }
+    
+    private void cargarColumnasTabla(){
+        
+        ArrayList<Object> filaCabecera = new ArrayList<>();
+        filaCabecera.add("ID");
+        filaCabecera.add("Nombre");
+        for(Object it: filaCabecera){
+            modeloTabla.addColumn(it);
+        }
+        tbl_tablaInscripciones.setModel(modeloTabla);
+        
+    }
+   
+    private void borrarFilaTabla(){
+        
+        int indice = modeloTabla.getRowCount() -1;
+        
+        
+        for(int i = indice;i >= 0; i--){
+            modeloTabla.removeRow(i);
+        }
         
         
     }
+    
+    private void materiasNoInscriptas(){
+        
+        borrarFilaTabla();
+        Alumno seleccion = (Alumno)jcb_alumnosInscripcion.getSelectedItem();
+        listaM = (ArrayList) inscData.obtenerMateriasNoCursadas(seleccion.getId_alumno());
+        for(Materia m: listaM){
+            modeloTabla.addRow(new Object[] {
+                m.getId_materia(), 
+                m.getNombre()
+            });
+        }
+        
+        
+        
+        
+    }
+    
+    private void materiasInscriptas(){
+        
+        borrarFilaTabla();
+        Alumno seleccion = (Alumno)jcb_alumnosInscripcion.getSelectedItem();
+        listaM = (ArrayList) inscData.obtenerMateriasCursadas(seleccion.getId_alumno());
+        for(Materia m: listaM){
+            modeloTabla.addRow(new Object[] {
+                m.getId_materia(), 
+                m.getNombre()
+            });
+        }
+        
+        
+        
+    }
+    
+    
     
     
 
@@ -260,7 +372,7 @@ public class vistaInscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_salirInscripcion;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> jcb_alumnosInscripcion;
+    private javax.swing.JComboBox<Alumno> jcb_alumnosInscripcion;
     private javax.swing.JRadioButton jrb_inscripto;
     private javax.swing.JRadioButton jrb_noinscripto;
     private javax.swing.JLabel lbl_alumnoInscripcion;
