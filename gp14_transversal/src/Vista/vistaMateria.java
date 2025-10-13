@@ -58,24 +58,26 @@ public class vistaMateria extends javax.swing.JInternalFrame {
         lbl_estadoM = new javax.swing.JLabel();
         chk_estadoM = new javax.swing.JCheckBox();
 
+        setBackground(new java.awt.Color(0, 102, 0));
         setClosable(true);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.gray, null, null));
-        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.setForeground(new java.awt.Color(153, 255, 255));
 
         lbl_tituloM.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lbl_tituloM.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_tituloM.setForeground(new java.awt.Color(255, 255, 255));
         lbl_tituloM.setText("Materias");
 
         lbl_id_materia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbl_id_materia.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_id_materia.setForeground(new java.awt.Color(255, 255, 255));
         lbl_id_materia.setText("Id");
 
         lbl_nombreM.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbl_nombreM.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_nombreM.setForeground(new java.awt.Color(255, 255, 255));
         lbl_nombreM.setText("Nombre");
 
+        btn_guardarM.setBackground(new java.awt.Color(102, 0, 204));
         btn_guardarM.setText("Guardar");
         btn_guardarM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +85,7 @@ public class vistaMateria extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_borrarM.setBackground(new java.awt.Color(102, 0, 204));
         btn_borrarM.setText("Borrar");
         btn_borrarM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +93,7 @@ public class vistaMateria extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_actuM.setBackground(new java.awt.Color(102, 0, 204));
         btn_actuM.setText("Actualizar");
         btn_actuM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +101,7 @@ public class vistaMateria extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_limpiarM.setBackground(new java.awt.Color(102, 0, 204));
         btn_limpiarM.setText("Limpiar");
         btn_limpiarM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +109,7 @@ public class vistaMateria extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_bajam.setBackground(new java.awt.Color(102, 0, 204));
         btn_bajam.setText("BajaLogica");
         btn_bajam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +117,7 @@ public class vistaMateria extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_buscarM.setBackground(new java.awt.Color(102, 0, 204));
         btn_buscarM.setText("Buscar");
         btn_buscarM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +125,7 @@ public class vistaMateria extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_altam.setBackground(new java.awt.Color(102, 0, 204));
         btn_altam.setText("AltaLogica");
         btn_altam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,11 +134,11 @@ public class vistaMateria extends javax.swing.JInternalFrame {
         });
 
         lbl_anoM.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbl_anoM.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_anoM.setForeground(new java.awt.Color(255, 255, 255));
         lbl_anoM.setText("Ano");
 
         lbl_estadoM.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbl_estadoM.setForeground(new java.awt.Color(0, 0, 0));
+        lbl_estadoM.setForeground(new java.awt.Color(255, 255, 255));
         lbl_estadoM.setText("Activo");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

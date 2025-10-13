@@ -40,16 +40,25 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        dktp_escritorio.setBackground(new java.awt.Color(0, 0, 0));
+        dktp_escritorio.setBorder(new javax.swing.border.MatteBorder(null));
+        dktp_escritorio.setForeground(new java.awt.Color(102, 102, 255));
+        dktp_escritorio.setToolTipText("");
+
         javax.swing.GroupLayout dktp_escritorioLayout = new javax.swing.GroupLayout(dktp_escritorio);
         dktp_escritorio.setLayout(dktp_escritorioLayout);
         dktp_escritorioLayout.setHorizontalGroup(
             dktp_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1170, Short.MAX_VALUE)
+            .addGap(0, 1168, Short.MAX_VALUE)
         );
         dktp_escritorioLayout.setVerticalGroup(
             dktp_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGap(0, 633, Short.MAX_VALUE)
         );
+
+        menu_principal.setBackground(new java.awt.Color(102, 102, 255));
+        menu_principal.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(102, 102, 255)));
+        menu_principal.setForeground(new java.awt.Color(102, 102, 255));
 
         menu_materias.setText("Materias");
 
