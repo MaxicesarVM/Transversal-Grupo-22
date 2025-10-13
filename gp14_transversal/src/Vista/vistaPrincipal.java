@@ -44,11 +44,11 @@ public class vistaPrincipal extends javax.swing.JFrame {
         dktp_escritorio.setLayout(dktp_escritorioLayout);
         dktp_escritorioLayout.setHorizontalGroup(
             dktp_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1257, Short.MAX_VALUE)
+            .addGap(0, 1170, Short.MAX_VALUE)
         );
         dktp_escritorioLayout.setVerticalGroup(
             dktp_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 704, Short.MAX_VALUE)
+            .addGap(0, 640, Short.MAX_VALUE)
         );
 
         menu_materias.setText("Materias");
@@ -118,7 +118,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dktp_escritorio)
+            .addComponent(dktp_escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
