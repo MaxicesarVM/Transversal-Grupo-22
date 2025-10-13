@@ -90,8 +90,6 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
         lbl_dni.setForeground(new java.awt.Color(0, 0, 0));
         lbl_dni.setText("Dni");
 
-        check_activo.setText("jCheckBox1");
-
         btn_guardar.setText("Guardar");
         btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,16 +273,22 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
 
     private void btn_bajalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bajalActionPerformed
         
+        
         int seleccionId = Integer.parseInt(txt_id.getText());
         int seleccionDni = Integer.parseInt(txt_dni.getText());
         String seleccionNombre = txt_nombre.getText();
         String seleccionApellido = txt_apellido.getText();
-        LocalDate seleccionFecha = LocalDate.parse(txt_fecha.getDateFormatString());
+        Date fecha = txt_fecha.getDate();
+        LocalDate seleccionFecha = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        
+        
+        
         boolean seleccionEstado = check_activo.isSelected();
         
         Alumno alumnoBaja = new Alumno(seleccionId, seleccionDni, seleccionNombre, seleccionApellido, seleccionFecha, seleccionEstado);
         operacionesAlumnos.bajaLogica(alumnoBaja);
         JOptionPane.showMessageDialog(this, "Se dio de baja el alumno correctamente");
+        
         
         
         
@@ -297,7 +301,8 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
         int seleccionDni = Integer.parseInt(txt_dni.getText());
         String seleccionNombre = txt_nombre.getText();
         String seleccionApellido = txt_apellido.getText();
-        LocalDate seleccionFecha = LocalDate.parse(txt_fecha.getDateFormatString());
+        Date fecha = txt_fecha.getDate();
+        LocalDate seleccionFecha = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         boolean seleccionEstado = check_activo.isSelected();
         
         Alumno alumnoAlta = new Alumno(seleccionId, seleccionDni, seleccionNombre, seleccionApellido, seleccionFecha, seleccionEstado);
@@ -310,7 +315,8 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         
-        int seleccion = Integer.parseInt(txt_id.getText());
+        int seleccion = Integer.parseInt(txt_dni.getText());
+        txt_id.setText(String.valueOf(operacionesAlumnos.buscarAlumno(seleccion).getId_alumno()));
         txt_dni.setText(String.valueOf(operacionesAlumnos.buscarAlumno(seleccion).getDni()));
         txt_nombre.setText(operacionesAlumnos.buscarAlumno(seleccion).getNombre());
         txt_apellido.setText(operacionesAlumnos.buscarAlumno(seleccion).getApellido());
@@ -318,7 +324,7 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
         LocalDate fecNac = operacionesAlumnos.buscarAlumno(seleccion).getFecha_nacimiento();
         Date fechaParseada = Date.from(fecNac.atStartOfDay(ZoneId.systemDefault()).toInstant());
         txt_fecha.setDate(fechaParseada);
-        check_activo.setEnabled(operacionesAlumnos.buscarAlumno(seleccion).isEstado());
+        check_activo.setSelected(operacionesAlumnos.buscarAlumno(seleccion).isEstado());
         
         
         
@@ -329,14 +335,15 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
         
         
         
-        int seleccionId = Integer.parseInt(txt_id.getText());
+        
         int seleccionDni = Integer.parseInt(txt_dni.getText());
         String seleccionNombre = txt_nombre.getText();
         String seleccionApellido = txt_apellido.getText();
-        LocalDate seleccionFecha = LocalDate.parse(txt_fecha.getDateFormatString());
+        Date fecha = txt_fecha.getDate();
+        LocalDate seleccionFecha = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         boolean seleccionEstado = check_activo.isSelected();
         
-        Alumno alumnoCreado = new Alumno(seleccionId, seleccionDni, seleccionNombre, seleccionApellido, seleccionFecha, seleccionEstado);
+        Alumno alumnoCreado = new Alumno(seleccionDni, seleccionApellido, seleccionNombre, seleccionFecha, seleccionEstado);
         operacionesAlumnos.agregarAlumno(alumnoCreado);
         JOptionPane.showMessageDialog(this, "Se agrego el alumno: " + seleccionNombre + " correctamente");
         
@@ -363,11 +370,12 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
         int seleccionDni = Integer.parseInt(txt_dni.getText());
         String seleccionNombre = txt_nombre.getText();
         String seleccionApellido = txt_apellido.getText();
-        LocalDate seleccionFecha = LocalDate.parse(txt_fecha.getDateFormatString());
+        Date fecha = txt_fecha.getDate();
+        LocalDate seleccionFecha = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         boolean seleccionEstado = check_activo.isSelected();
         
-        Alumno alumnoActualizado = new Alumno(seleccionId, seleccionDni, seleccionNombre, seleccionApellido, seleccionFecha, seleccionEstado);
-        operacionesAlumnos.agregarAlumno(alumnoActualizado);
+        Alumno alumnoActualizado = new Alumno(seleccionId, seleccionDni, seleccionApellido, seleccionNombre, seleccionFecha, seleccionEstado);
+        operacionesAlumnos.actualizarAlumno(alumnoActualizado);
         JOptionPane.showMessageDialog(this, "Se actualizo el alumno correctamente");
         
         
@@ -383,7 +391,7 @@ public class vistaAlumno extends javax.swing.JInternalFrame {
         txt_nombre.setText("");
         txt_apellido.setText("");
         txt_fecha.setDate(null);
-        check_activo.setEnabled(false);
+        check_activo.setSelected(false);
         
         
         

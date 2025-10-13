@@ -4,11 +4,6 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="menu_principal">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="menu_archivo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Archivo"/>
-          </Properties>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="menu_materias">
           <Properties>
             <Property name="text" type="java.lang.String" value="Materias"/>
@@ -78,11 +73,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menu_consultas">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Consultas"/>
-          </Properties>
-        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>
@@ -124,12 +114,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="974" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="1257" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="558" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="704" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

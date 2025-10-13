@@ -266,9 +266,6 @@
         <Component class="com.toedter.calendar.JDateChooser" name="txt_fecha">
         </Component>
         <Component class="javax.swing.JCheckBox" name="check_activo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jCheckBox1"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btn_guardar">
           <Properties>

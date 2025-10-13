@@ -28,7 +28,6 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
         dktp_escritorio = new javax.swing.JDesktopPane();
         menu_principal = new javax.swing.JMenuBar();
-        menu_archivo = new javax.swing.JMenu();
         menu_materias = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
         menu_alumnos = new javax.swing.JMenu();
@@ -38,7 +37,6 @@ public class vistaPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         menu_carga = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        menu_consultas = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,15 +44,12 @@ public class vistaPrincipal extends javax.swing.JFrame {
         dktp_escritorio.setLayout(dktp_escritorioLayout);
         dktp_escritorioLayout.setHorizontalGroup(
             dktp_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 974, Short.MAX_VALUE)
+            .addGap(0, 1257, Short.MAX_VALUE)
         );
         dktp_escritorioLayout.setVerticalGroup(
             dktp_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 558, Short.MAX_VALUE)
+            .addGap(0, 704, Short.MAX_VALUE)
         );
-
-        menu_archivo.setText("Archivo");
-        menu_principal.add(menu_archivo);
 
         menu_materias.setText("Materias");
 
@@ -116,9 +111,6 @@ public class vistaPrincipal extends javax.swing.JFrame {
         menu_carga.add(jMenuItem2);
 
         menu_principal.add(menu_carga);
-
-        menu_consultas.setText("Consultas");
-        menu_principal.add(menu_consultas);
 
         setJMenuBar(menu_principal);
 
@@ -237,9 +229,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu menu_alumnos;
-    private javax.swing.JMenu menu_archivo;
     private javax.swing.JMenu menu_carga;
-    private javax.swing.JMenu menu_consultas;
     private javax.swing.JMenu menu_inscripciones;
     private javax.swing.JMenu menu_materias;
     private javax.swing.JMenuBar menu_principal;

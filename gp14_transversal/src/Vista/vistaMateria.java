@@ -132,8 +132,6 @@ public class vistaMateria extends javax.swing.JInternalFrame {
         lbl_estadoM.setForeground(new java.awt.Color(0, 0, 0));
         lbl_estadoM.setText("Activo");
 
-        chk_estadoM.setText("jCheckBox1");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -268,8 +266,13 @@ public class vistaMateria extends javax.swing.JInternalFrame {
         
         txt_nombreM.setText(operacionesMaterias.buscarMateria(seleccion).getNombre());
         txt_anoM.setText(operacionesMaterias.buscarMateria(seleccion).getAno().toString());
-        chk_estadoM.setEnabled(operacionesMaterias.buscarMateria(seleccion).isEstado());
         
+        
+        if(operacionesMaterias.buscarMateria(seleccion).isEstado() == true){
+            chk_estadoM.setSelected(true);
+        } else{
+            chk_estadoM.setSelected(false);
+        }
         
         
         
@@ -278,12 +281,13 @@ public class vistaMateria extends javax.swing.JInternalFrame {
 
     private void btn_guardarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarMActionPerformed
        
-        int seleccionId = Integer.parseInt(txt_idM.getText());
+        
         String seleccionNombre = txt_nombreM.getText();
         LocalDate seleccionFecha = LocalDate.parse(txt_anoM.getText());
         boolean seleccionEstado = chk_estadoM.isSelected();
         
-        Materia materiaCreada = new Materia(seleccionId, seleccionNombre, seleccionFecha, seleccionEstado);
+        Materia materiaCreada = new Materia(seleccionNombre, seleccionFecha, seleccionEstado);
+        System.out.println("Materia Creada Prueba");
         operacionesMaterias.agregarMateria(materiaCreada);
         JOptionPane.showMessageDialog(this, "Se agrego la materia: " + seleccionNombre + " correctamente");
         
@@ -321,7 +325,7 @@ public class vistaMateria extends javax.swing.JInternalFrame {
         txt_idM.setText("");
         txt_nombreM.setText("");
         txt_anoM.setText("");
-        chk_estadoM.setEnabled(false);
+        chk_estadoM.setSelected(false);
         
         
         

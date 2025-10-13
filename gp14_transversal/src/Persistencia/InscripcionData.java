@@ -150,6 +150,36 @@ public class InscripcionData {
     }
     
     
+    public List<Alumno> obtenerAlumnosInscriptos(int id){
+        List<Alumno> alumnos = new ArrayList<>();
+        
+        try{
+            String sql = "SELECT alumno.id_alumno, nombre, apellido FROM inscripcion, alumno WHERE inscripcion.id_alumno = alumno.id_alumno" + 
+                    " AND inscripcion.id_materia = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            Alumno alumno;
+            while(rs.next()){
+                alumno = new Alumno();
+                alumno.setId_alumno(rs.getInt("id_alumno"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumnos.add(alumno);
+                
+            }
+            
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al mostrar alumnos inscriptos" + ex.getMessage());
+        }
+        
+        
+       return alumnos;  
+        
+    }
+    
+    
     
     
     

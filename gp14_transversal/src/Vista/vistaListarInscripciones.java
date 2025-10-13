@@ -4,10 +4,14 @@
  */
 package Vista;
 
+import Modelo.Alumno;
+import Modelo.Inscripcion;
+import Modelo.Materia;
 import Persistencia.AlumnoData;
 import Persistencia.Conexion;
 import Persistencia.InscripcionData;
 import Persistencia.MateriaData;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,27 +23,109 @@ public class vistaListarInscripciones extends javax.swing.JInternalFrame {
     /**
      * Creates new form vistaListarInscripciones
      */
+    
+    private ArrayList<Materia> listaM;
+    private ArrayList<Alumno> listaA;
+    private InscripcionData inscData;
+    private MateriaData mData;
+    private AlumnoData aData;
+    private Inscripcion inscripcionFicticia;
+
+    private DefaultTableModel modeloTabla;
+    
+    Conexion con = new Conexion();
+    
+    
     public vistaListarInscripciones() {
         initComponents();
-        cargarlistadoInscripcion();
+        
+        aData = new AlumnoData(con);
+        mData = new MateriaData(con);
+        inscData = new InscripcionData(con);
+        listaA = (ArrayList<Alumno>)aData.listarAlumnos();
+        listaM = (ArrayList<Materia>)mData.listarMaterias();
+        modeloTabla = new DefaultTableModel();
+        
+        
+        cargarMaterias();
+        cargarColumnasTabla();
+        
     }
 
-    private DefaultTableModel tablalistarInscripciones = new DefaultTableModel(){
+    
+    
+    
+    
+    private void cargarMaterias(){
         
-        public boolean iscellEditable(int f, int c){
-         
-            return false;
+        for(Materia materia: listaM){
             
+            jcb_materiaListado.addItem(materia);
+        
         }
         
         
-    };
+    }
+    
+    
+    private void cargarColumnasTabla(){
+        
+        ArrayList<Object> filaCabecera = new ArrayList<>();
+        filaCabecera.add("ID");
+        filaCabecera.add("Nombre");
+        filaCabecera.add("Apellido");
+        for(Object it: filaCabecera){
+            modeloTabla.addColumn(it);
+        }
+        tbl_materiaListados.setModel(modeloTabla);
+        
+    }
+    
+    
+    private void borrarFilaTabla(){
+        
+        int indice = modeloTabla.getRowCount() -1;
+        
+        
+        for(int i = indice;i >= 0; i--){
+            modeloTabla.removeRow(i);
+        }
+        
+        
+    }
+    
+    
+    private void alumnosInscriptos(){
+        
+        borrarFilaTabla();
+        Materia seleccion = (Materia)jcb_materiaListado.getSelectedItem();
+        listaA = (ArrayList) inscData.obtenerAlumnosInscriptos(seleccion.getId_materia());
+        
+        
+        for(Alumno a: listaA){
+            
+            
+            
+            modeloTabla.addRow(new Object[] {
+                a.getId_alumno(), 
+                a.getNombre(),
+                a.getApellido()
+                
+                
+                
+ 
+            });
+        }
+        
+        
+        
+    }
     
     
     
-    Conexion con = new Conexion();
-    MateriaData operacionesAlumnos = new MateriaData(con);
-    InscripcionData operacionesInscripciones = new InscripcionData(con);
+    
+    
+    
     
     
     
@@ -65,11 +151,19 @@ public class vistaListarInscripciones extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
+        lbl_tituloListado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_tituloListado.setForeground(new java.awt.Color(0, 0, 0));
         lbl_tituloListado.setText("LISTADO DE INSCRIPCIONES ");
 
+        lbl_materiaListado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_materiaListado.setForeground(new java.awt.Color(0, 0, 0));
         lbl_materiaListado.setText("MATERIA:");
+
+        jcb_materiaListado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcb_materiaListadoActionPerformed(evt);
+            }
+        });
 
         tbl_materiaListados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -96,17 +190,20 @@ public class vistaListarInscripciones extends javax.swing.JInternalFrame {
                         .addGap(98, 98, 98)
                         .addComponent(lbl_materiaListado)
                         .addGap(41, 41, 41)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lbl_tituloListado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jcb_materiaListado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jcb_materiaListado, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(64, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btn_salirListado)
-                .addGap(33, 33, 33))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btn_salirListado)
+                        .addGap(33, 33, 33))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbl_tituloListado)
+                        .addGap(157, 157, 157))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,27 +235,24 @@ public class vistaListarInscripciones extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jcb_materiaListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcb_materiaListadoActionPerformed
+        alumnosInscriptos();
+    }//GEN-LAST:event_jcb_materiaListadoActionPerformed
+
 
     
-    public void cargarlistadoInscripcion(){
-        
-        tablalistarInscripciones.addColumn("ID");
-        tablalistarInscripciones.addColumn("Dni");
-        tablalistarInscripciones.addColumn("Nombre");
-        tablalistarInscripciones.addColumn("Apellido");
-        
-        
-        tbl_materiaListados.setModel(tablalistarInscripciones);
-        
-        
-        
-    }
+    
+    
+    
+    
+    
+    
     
     
     
@@ -166,7 +260,7 @@ public class vistaListarInscripciones extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_salirListado;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> jcb_materiaListado;
+    private javax.swing.JComboBox<Materia> jcb_materiaListado;
     private javax.swing.JLabel lbl_materiaListado;
     private javax.swing.JLabel lbl_tituloListado;
     private javax.swing.JTable tbl_materiaListados;

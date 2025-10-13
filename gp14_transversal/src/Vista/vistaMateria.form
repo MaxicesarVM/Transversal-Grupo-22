@@ -270,9 +270,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="chk_estadoM">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jCheckBox1"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
