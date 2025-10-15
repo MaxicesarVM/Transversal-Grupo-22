@@ -69,7 +69,7 @@
                                   <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="lbl_dni" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
@@ -83,7 +83,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="lbl_fecha" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="txt_fecha" min="-2" pref="135" max="-2" attributes="0"/>
+                                          <Component id="txt_fecha" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="lbl_apellido" min="-2" max="-2" attributes="0"/>
@@ -133,49 +133,49 @@
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Component id="lbl_titulo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbl_id" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_id" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn_buscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbl_dni" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_dni" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbl_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_buscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbl_dni" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_dni" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbl_nombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_nombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbl_apellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_apellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                          <Component id="lbl_fecha" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="txt_fecha" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbl_nombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_nombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_estado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="check_activo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbl_apellido" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_apellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_guardar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="btn_borrar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="btn_actualizar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="btn_limpiar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="lbl_fecha" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lbl_estado" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="check_activo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btn_guardar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="btn_borrar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="btn_actualizar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="btn_limpiar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btn_bajal" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="btn_altal" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Component id="txt_fecha" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btn_bajal" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="btn_altal" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="43" max="32767" attributes="0"/>
               </Group>
@@ -255,8 +255,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_nombre">
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="txt_fecha">
-        </Component>
         <Component class="javax.swing.JCheckBox" name="check_activo">
         </Component>
         <Component class="javax.swing.JButton" name="btn_guardar">
@@ -327,6 +325,8 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_apellido">
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="txt_fecha">
         </Component>
       </SubComponents>
     </Container>
